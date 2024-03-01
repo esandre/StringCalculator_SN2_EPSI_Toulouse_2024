@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var input = Console.ReadLine();
+
+var parts = input.Split(',');
+var numbers = parts.Select(int.Parse);
+
+Console.WriteLine(numbers.Sum());
