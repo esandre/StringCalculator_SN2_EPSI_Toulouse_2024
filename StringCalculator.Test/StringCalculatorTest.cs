@@ -9,7 +9,7 @@ namespace StringCalculator.Test
             yield return [0, 1];
             yield return [2, 0];
             yield return [0, 2];
-            yield return [int.MaxValue, int.MaxValue];
+            yield return [int.MaxValue / 2, int.MaxValue / 2];
 
             var random = Random.Shared;
             yield return [random.Next(), random.Next()];
@@ -17,13 +17,13 @@ namespace StringCalculator.Test
 
         [Theory]
         [MemberData(nameof(CasAPlusB))]
-        public void APlusB(int a, int b)
+        public void APlusB(params int[] parts)
         {
-            var input = $"{a},{b}";
+            var input = string.Join(',', parts);
 
             var result = StringCalculator.Parse(input);
 
-            Assert.Equal(a + b, result);
+            Assert.Equal(parts.Sum(), result);
         }
     }
 }
